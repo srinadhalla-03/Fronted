@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Calculator - 4 Functions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div></div>
+          <div class="card-body p-4">
+            <h3 class="text-center mb-4 text-primary fw-bold">Simple Calculator</h3>
+            
+            
+            <div class="mb-3">
+              <label for="num1" class="form-label font-monospace">First Number</label>
+              <input type="number" id="num1" class="form-control form-control-lg" placeholder="Enter first number">
+            </div>
+
+            <!-- Input 2 -->
+            <div class="mb-4">
+              <label for="num2" class="form-label font-monospace">Second Number</label>
+              <input type="number" id="num2" class="form-control form-control-lg" placeholder="Enter second number">
+            </div>
+            <div class="d-grid gap-2 d-flex justify-content-between mb-4">
+              <button onclick="add()" class="btn btn-outline-primary ">+</button>
+              <button onclick="subtract()" class="btn btn-outline-primary ">−</button>
+              <button onclick="multiply()" class="btn btn-outline-primary ">×</button>
+              <button onclick="divide()" class="btn btn-outline-primary ">÷</button>
+            </div>
+
+            <!-- Result Display -->
+            <div class="alert alert-secondary text-center m-0 fs-5 fw-bold">
+              Result: <span id="result" class="text-primary">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Helper function to read inputs via getElementById
+    function getInputs() {
+      const val1 = parseFloat(document.getElementById('num1').value);
+      const val2 = parseFloat(document.getElementById('num2').value);
+      const resultSpan = document.getElementById('result');
+
+      if (isNaN(val1) || isNaN(val2)) {
+        resultSpan.textContent = 'Please enter both numbers';
+        resultSpan.className = 'text-danger fs-6';
+        return null;
+      }
+
+      return { num1: val1, num2: val2, output: resultSpan };
+    }
+    function add() {
+      const inputs = getInputs();
+      if (!inputs) return;
+
+      const res = inputs.num1 + inputs.num2;
+      displayResult(inputs.output, res);
+    }
+
+    function subtract() {
+      const inputs = getInputs();
+      if (!inputs) return;
+
+      const res = inputs.num1 - inputs.num2;
+      displayResult(inputs.output, res);
+    }
+    function multiply() {
+      const inputs = getInputs();
+      if (!inputs) return;
+
+      const res = inputs.num1 * inputs.num2;
+      displayResult(inputs.output, res);
+    }
+
+    function divide() {
+      const inputs = getInputs();
+      if (!inputs) return;
+
+      if (inputs.num2 === 0) {
+        inputs.output.textContent = 'Cannot divide by zero';
+        inputs.output.className = 'text-danger fs-6';
+        return;
+      }
+
+      const res = inputs.num1 / inputs.num2;
+      displayResult(inputs.output, res);
+    }
+    function displayResult(element, val) {
+      element.textContent = Number.isInteger(val) ? val : val.toFixed(4);
+      element.className = 'text-primary';
+    }
+  </script>
+
+</body>
+</html>
