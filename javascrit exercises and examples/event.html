@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="welcomemsg">Hello World</h1>
+
+    <script>
+        let ele=document.getElementById("welcomemsg")
+        ele.addEventListener("click",function(){
+            ele.innerHTML ="welcome to vishnu college";
+        });
+    </script>
+    <h1>destructing</h1>
+    <script>
+        const colors=["red","orange","blue"];
+        const [first,second,third]=colors;
+        console.log(second);
+        const numbers =[1,2,3,4,5];
+        const [one,,,four,five] =numbers;
+        console.log(one);
+        console.log(four);
+        console.log(five);
+        const student={
+            name:"david",
+            age:20
+        };
+        const{name:studentName,age:studentAge}=student;
+        console.log(studentName);
+        console.log(studentAge);
+
+    </script>
+</body>
+</html>
