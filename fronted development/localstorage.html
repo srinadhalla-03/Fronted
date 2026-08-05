@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local Storage Example</title>
+</head>
+<body>
+  <h2>Local Storage Demo</h2>
+
+  <input id="nameInput" placeholder="Type your name">
+  <button onclick="save()">Save</button>
+  <button onclick="show()">Show</button>
+
+  <p id="result"></p>
+
+  <script>
+    function save() {
+     let a= localStorage.setItem("name", document.getElementById("nameInput").value);
+     console.log(a);
+    }
+
+    function show() {
+      document.getElementById("result").innerText = localStorage.getItem("name");
+    }
+  </script>
+</body>
+</html>
